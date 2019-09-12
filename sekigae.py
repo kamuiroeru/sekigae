@@ -61,6 +61,20 @@ class Sekigae:
         self.position[pa[0]][pa[1]] = b
         self.position[pb[0]][pb[1]] = a
 
+    def set(self, x: int, y: int, n: int):
+        """
+        n を x 行 y 列 にセットする。もともとそこにあった番号が n と入れ替わる
+        :param x: 行数
+        :param y: 列数
+        :param n: セットする番号
+        """
+        a = n
+        try:
+            b = self.position[x-1][y-1]
+        except IndexError:
+            assert False, 'そこに席はありません'
+        self.swap(a, b)
+
     def show(self, side='left'):
         """
         席を表示する
@@ -107,3 +121,4 @@ class Sekigae:
 if __name__ == '__main__':
     sekigae = Sekigae(45)
     sekigae.show()
+    controller = ''
