@@ -1,5 +1,6 @@
 from random import shuffle, seed
 from math import log10, floor
+import csv
 
 seed(1)
 
@@ -16,6 +17,16 @@ class Sekigae:
             outer_list.append(people[left:left + ncol])
 
         return outer_list
+
+    def _reload_params(self, position: [[]], top_label: str):
+        self.n_people = sum(len(e) for e in position)
+        self.ncol = len(position[0])
+        self.max_char_width = floor(log10(self.n_people)) + 1
+        self.line_bar = '-' * ((self.max_char_width + 3) * self.ncol + 1)
+        self.header = ('{: ^' + str(len(self.line_bar)) + '}').format(top_label)
+        self.table_format = lambda n: \
+            ' ' + ' ' * (self.max_char_width - len(str(n))) + str(n) + ' '
+        self.make_line = lambda line: '|' + '|'.join([self.table_format(n) for n in line]) + '|'
 
     def __init__(self, n_people: int, ncol=6, top_label='黒板'):
         """
@@ -72,6 +83,27 @@ class Sekigae:
             print(space + last)
         else:
             print(last)
+
+    def to_csv(self, filename='out.csv'):
+        """
+        席の並びをcsvに吐き出す
+        :param str filename: 書き出すCSVファイル名（default: "out.csv"）
+        """
+        with open(filename, 'w') as f:
+            writer = csv.writer(f, lineterminator='\n')
+            writer.writerows(self.position)
+
+    def read_csv(self, filename: str, top_label='黒板'):
+        """
+        席の並びが書いてあるcsvを読み込む
+        :param str filename: 読み込むCSVファイル名
+        :param str top_label: '前' の表示名（Default: "黒板"）
+        """
+        with open(filename) as f:
+            reader = csv.reader(f)
+
+            self.position = [[int(elem) for elem in inner] for inner in reader]
+            self._reload_params(self.position, top_label)
 
 
 if __name__ == '__main__':
