@@ -2,19 +2,17 @@ from random import shuffle, seed
 from math import log10, floor
 import csv
 
-seed(1)
-
 
 class Sekigae:
-    def _make_table_position(self, n_people, ncol):
+    def _make_table_position(self):
         """
         人数から席配置を示した2次元リストを作る
         """
         outer_list = []
-        people = list(range(1, n_people + 1))
+        people = list(range(1, self.n_people + 1))
         shuffle(people)
-        for left in range(0, n_people, ncol):
-            outer_list.append(people[left:left + ncol])
+        for left in range(0, self.n_people, self.ncol):
+            outer_list.append(people[left:left + self.ncol])
 
         return outer_list
 
@@ -40,7 +38,7 @@ class Sekigae:
         assert n_people > ncol, '人数 > 列数 となるように指定してください'
         self.n_people = n_people
         self.ncol = ncol
-        self.position = self._make_table_position(n_people, ncol)
+        self.position = self._make_table_position()
         self.max_char_width = floor(log10(n_people)) + 1
         self.line_bar = '-' * ((self.max_char_width + 3) * ncol + 1)
         self.header = ('{: ^' + str(len(self.line_bar)) + '}').format(top_label)
