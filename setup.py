@@ -6,7 +6,7 @@ import os
 from setuptools import setup, find_packages
 
 try:
-    with open('README.rst') as f:
+    with open('README.md') as f:
         readme = f.read()
 except IOError:
     readme = ''
@@ -35,16 +35,18 @@ setup(
     maintainer_email='e1371@ob.akashi.ac.jp',
     description='sekigae program',
     long_description=readme,
+    python_requires='>=3.4',
     packages=find_packages(),
     install_requires=_requires_from_file('requirements.txt'),
     license="MIT",
     classifiers=[
+        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: Implementation :: CPython',
-        'Programming Language :: Python :: Implementation :: PyPy'
+        'Programming Language :: Python :: Implementation :: PyPy',
         'License :: OSI Approved :: MIT License',
     ],
     entry_points="""

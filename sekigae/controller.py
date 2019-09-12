@@ -1,5 +1,5 @@
 import argparse
-from sekigae import Sekigae
+from .sekigae import Sekigae
 
 
 class CustomFormatter(argparse.ArgumentDefaultsHelpFormatter, argparse.RawTextHelpFormatter):
