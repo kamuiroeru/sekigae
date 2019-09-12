@@ -1,6 +1,9 @@
 # Sekigae Program
 For Sekigae Program
 
+## Requirements
+- python >= 3
+
 ## Install
 shell
 ```shell script
