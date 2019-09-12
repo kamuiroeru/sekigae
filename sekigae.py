@@ -3,6 +3,7 @@ from math import log10, floor
 
 seed(1)
 
+
 class Sekigae:
     def _make_table_position(self, n_people, ncol):
         """
@@ -11,7 +12,7 @@ class Sekigae:
         outer_list = []
         people = list(range(1, n_people + 1))
         shuffle(people)
-        for left in range(1, n_people+1, ncol):
+        for left in range(0, n_people, ncol):
             outer_list.append(people[left:left + ncol])
 
         return outer_list
@@ -21,10 +22,11 @@ class Sekigae:
         人数から席配置を示した2次元リストを作る
         :param int n_people: 席につく人数
         :param int ncol: 何列に配置するか（Default: 6）
-        :param str top_label: '前' の表示名（Default: 黒板）
+        :param str top_label: '前' の表示名（Default: "黒板"）
         """
         assert n_people > 0, '人数は 1 以上を指定してください'
         assert ncol > 0, '列数は 1 以上を指定してください'
+        assert n_people > ncol, '人数 > 列数 となるように指定してください'
         self.n_people = n_people
         self.ncol = ncol
         self.position = self._make_table_position(n_people, ncol)
