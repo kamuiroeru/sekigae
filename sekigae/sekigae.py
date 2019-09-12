@@ -1,4 +1,4 @@
-from random import shuffle, seed
+from random import shuffle
 from math import log10, floor
 import csv
 
@@ -116,9 +116,3 @@ class Sekigae:
 
             self.position = [[int(elem) for elem in inner] for inner in reader]
             self._reload_params(self.position, top_label)
-
-
-if __name__ == '__main__':
-    sekigae = Sekigae(45)
-    sekigae.show()
-    controller = ''
