@@ -150,3 +150,36 @@ output
 
 `7` is fixed 1st row 2nd col.
 `9` is fixed 1st row 4th col.
+
+### Pipeline
+#### Pipeline input
+out.csv
+```text
+10,12,3,5,6
+11,4,9,1,13
+7,8,2
+```
+```shell script
+cat out.csv | sekigae
+```
+output
+```text
+          FRONT
+--------------------------
+| 10 | 12 |  3 |  5 |  6 |
+--------------------------
+| 11 |  4 |  9 |  1 | 13 |
+--------------------------
+|  7 |  8 |  2 |
+```
+
+#### Pipeline output
+```shell script
+sekigae 13 5 -f | awk '{ if (gsub(/,/, " ")) print }'
+```
+output
+```text
+8 5 7 10 12
+11 6 3 4 1
+13 2 9
+```

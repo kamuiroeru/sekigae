@@ -105,6 +105,17 @@ class Sekigae:
             writer = csv.writer(f, lineterminator='\n')
             writer.writerows(self.position)
 
+    def read_csv_iter(self, iterable: iter, top_label: str):
+        """
+        iterable な Object から CSV を読み込む
+        :param iter iterable: iterable
+        :param str top_label: label
+        :return:
+        """
+        reader = csv.reader(iterable)
+        self.position = [[int(elem) for elem in inner] for inner in reader]
+        self._reload_params(self.position, top_label)
+
     def read_csv(self, filename: str, top_label='黒板'):
         """
         席の並びが書いてあるcsvを読み込む
@@ -112,7 +123,9 @@ class Sekigae:
         :param str top_label: '前' の表示名（Default: "黒板"）
         """
         with open(filename) as f:
-            reader = csv.reader(f)
+            self.read_csv_iter(f, top_label)
 
-            self.position = [[int(elem) for elem in inner] for inner in reader]
-            self._reload_params(self.position, top_label)
+    def show_csv(self):
+        """CSV形式で出力する（UNIXパイプライン処理用）"""
+        s = '\n'.join([','.join(map(str, inner)) for inner in self.position])
+        print(s)
