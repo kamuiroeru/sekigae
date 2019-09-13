@@ -2,7 +2,7 @@
 For Sekigae Program
 
 ## Requirements
-- python >= 3
+- python >= 3.6 ( Use f-strings )
 
 ## Install
 shell
