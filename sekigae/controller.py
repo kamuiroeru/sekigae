@@ -10,8 +10,8 @@ def main():
     parser = argparse.ArgumentParser(formatter_class=CustomFormatter, description='Sekigae Program')
     parser.add_argument('n_people', type=int,
                         help='Number of people')
-    parser.add_argument('nrow', type=int,
-                        help='Number of rows')
+    parser.add_argument('ncol', type=int,
+                        help='Number of columns')
     parser.add_argument('-t', '--tag', default='FRONT',
                         help='set tag name\n')
     parser.add_argument('--csv',
@@ -23,7 +23,7 @@ def main():
                         help='select number to especially place. \nFormat: row:col:number,...\n')
     args = parser.parse_args()
 
-    seki = Sekigae(args.n_people, args.nrow, args.tag)
+    seki = Sekigae(args.n_people, args.ncol, args.tag)
 
     # Read CSV
     if args.csv:
