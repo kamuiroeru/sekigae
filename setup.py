@@ -35,6 +35,7 @@ setup(
     maintainer_email='e1371@ob.akashi.ac.jp',
     description='sekigae program',
     long_description=readme,
+    long_description_content_type="text/markdown",
     python_requires='>=3.6',
     packages=find_packages(),
     install_requires=_requires_from_file('requirements.txt'),
