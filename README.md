@@ -1,6 +1,8 @@
 # Sekigae Program
 For Sekigae Program
 
+Japanese How To -> https://qiita.com/kamuiroeru/items/ae934e07882dfca64786
+
 ## Requirements
 - python >= 3.6 ( Use f-strings )
 
